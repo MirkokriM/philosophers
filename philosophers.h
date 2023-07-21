@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopers.c                                      :+:      :+:    :+:   */
+/*   philospers.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 18:34:05 by egiubell          #+#    #+#             */
-/*   Updated: 2023/07/21 19:09:32 by egiubell         ###   ########.fr       */
+/*   Created: 2023/07/21 18:34:41 by egiubell          #+#    #+#             */
+/*   Updated: 2023/07/21 19:11:07 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopers.h"
+#ifndef PHILOSOPERS_H
+# define PHILOSOPERS_H
 
-int main()
-{
-	
-}
+# include <unistd.h>
+# include <stdio.h>
+
+
+
+#endif
