@@ -26,5 +26,6 @@ fclean:
 re:
 
 norm:
+	$(NORM) $(NORM_FOLDER)
 
 .PHONY: all clean fclean re norm obj_dir
