@@ -1,47 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/28 16:38:26 by egiubell          #+#    #+#              #
-#    Updated: 2023/07/31 15:54:24 by egiubell         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = philosophers
+NAME = philo
+INCLUDE = ./include/philo.h
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I./include
+CFLAGS = -Werror -Wall -Wextra -g -I./include
+SRC = .$(SRC_DIR)/philo.c
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
+OBJ_DIR = ./obj
+SRC_DIR = ./src
+RM = rm -rf
+NORMI = norminette
+NORM_FOLDER = ./src ./include
 
-SEPARATOR = "\033[1m ******************************* \033[0m"
-SRC =	\
-		philosophers.c \
-		utils.c
+all: obj_dir $(NAME)
 
-OBJS = $(SRC:.c=.o)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-all: $(NAME)
+$(OBJ_DIR)/%.o: %.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX_LIBS) -o $(NAME)
-	@echo "\033[1m READY TO START! \033[0m"
-	@echo $(SEPARATOR)
-
-%.o: %.c
-	@printf "\tCompiling $<...\n"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\tCompiled!\n"
+obj_dir:
+	mkdir -p $(OBJ_DIR)
 
 clean:
-	@echo $(SEPARATOR)
-	@rm -rf $(OBJS)
-	@echo "\033[1m OBJ deleted \033[0m"
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "\033[1m $(NAME) deleted \033[0m"
-	@echo $(SEPARATOR)
+	$(RM) $(NAME)
+
 re: fclean all
 
-.PHONY: all, clean, fclean, re, bonus
+norm:
+	$(NORMI) $(NORM_FOLDER)
+
+.PHONY: all clean fclean re norm obj_dir
